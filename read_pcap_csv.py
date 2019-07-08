@@ -17,18 +17,18 @@ import numpy as np
 
 
 def getFeatures(featureFile):
-    print('before read')
+ #   print('before read')
     featureVals = pd.read_csv(featureFile,
                             sep=',',
                             header=0,
                             nrows = 10000)
 
                          
-    print('before conversion to np')
+ #   print('before conversion to np')
     #featureValnp = np.array(featureVals,dtype="float32")
   #  featureValnp = 0
    # labelsnp = np.array(labels)
-    print('after conversion to np')
+#    print('after conversion to np')
     featureNamesnp = featureVals.head(0).columns.values
     #featureNamesnp=np.array(featureNames)
     
@@ -37,7 +37,7 @@ def getFeatures(featureFile):
 
 
 def getTimeFeature(featureFile):
-    print('before read')
+#    print('before read')
     timeValues = pd.read_csv(featureFile,
                             sep=',',
                             header=0,
@@ -50,13 +50,13 @@ def getTimeFeature(featureFile):
     
     for i in range(len(timeValues)):
         if not timeValues[i] < 60:
-            print('drop packets up to ', i)
+  #          print('drop packets up to ', i)
             dropPackets = i
             break
 
     return dropPackets
 
-def main():
+def getAllFeatures():
     
     #return feature index of packets to eliminate for time windows longer than current time
     dropPackets = getTimeFeature('CICIDS_Friday-WorkingHours.csv')
@@ -66,8 +66,6 @@ def main():
 
     valuesToLabel = valuesToLabel.set_index(np.arange(len(valuesToLabel)))#this list corresponds to the values that will actually be labelled. The original list is still necessary to compute features    
         
-    print(featureValues)
-    print(valuesToLabel)
-    return valuesToLabel,featureValues
-
-main()
+ #   print(featureValues)
+ #   print(valuesToLabel)
+    return valuesToLabel,featureValues,dropPackets
