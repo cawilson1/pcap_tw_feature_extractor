@@ -45,7 +45,7 @@ def getTimeFeature(featureFile):
 
     dropPackets = 0
     timeValues = timeValues['Time']#dunno why i have to do this for this to work
-    print(timeValues)
+   # print(timeValues)
     
     
     for i in range(len(timeValues)):
